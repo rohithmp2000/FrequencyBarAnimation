@@ -1,0 +1,98 @@
+<html>
+<head>
+  <title>Frequency Bars Animation</title>
+  <style>
+    .outerdiv {
+      background-color: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      height: 150px;
+      padding: 10px;
+    }
+
+    .innterdiv {
+      width: 20%;
+      animation: bounce 1.5s infinite ease-in-out;
+    }
+
+    .purple { background-color: purple; }
+    .pink { background-color: rgb(255, 223, 192); }
+    .peach { background-color: rgb(251, 158, 158); }
+    .orange { background-color: orange; }
+    .yellow { background-color: yellow; }
+
+    @keyframes bounce {
+      0%, 100% { height: 20%; }
+      50% { height: 100%; }
+    }
+
+    .purple { animation-delay: 0s; }
+    .pink { animation-delay: 0.2s; }
+    .peach { animation-delay: 0.4s; }
+    .orange { animation-delay: 0.6s; }
+    .yellow { animation-delay: 0.8s; }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      height: 30px;
+      width: 100px;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .green { background-color: green; }
+    .purple-btn { background-color: purple; }
+    .red { background-color: red; }
+  </style>
+</head>
+<body>
+
+    <div class="outerdiv">
+        <div class="innterdiv purple"></div>
+        <div class="innterdiv pink"></div>
+        <div class="innterdiv peach"></div>
+        <div class="innterdiv orange"></div>
+        <div class="innterdiv yellow"></div>
+    </div>
+
+    <div class="button-container">
+        <button class="btn green" onclick="startAnimation()">Start</button>
+        <button class="btn purple-btn" onclick="resetAnimation()">Reset</button>
+        <button class="btn red" onclick="stopAnimation()">Stop</button>
+    </div>
+
+    <script>
+        const bars = document.querySelectorAll('.innterdiv');
+
+        function startAnimation() {
+        bars.forEach(bar => {
+            bar.style.animationPlayState = 'running';
+        });
+        }
+
+        function stopAnimation() {
+        bars.forEach(bar => {
+            bar.style.animationPlayState = 'paused';
+        });
+        }
+
+        function resetAnimation() {
+        bars.forEach(bar => {
+            bar.style.animation = 'none';
+            setTimeout(() => {
+            bar.style.animation = '';
+            }, 10);
+        });
+        }
+    </script>
+</body>
+</html>
